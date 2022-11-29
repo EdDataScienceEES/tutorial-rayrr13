@@ -15,7 +15,24 @@
 /*.Rcheck/
 
 # RStudio files
+tutorial-rayrr13.Rproj
 .Rproj.user/
+*.Rproj
+.Rproj.user
+tutorial-rayrr13.Rproj
+.Rproj
+# prevent mac users to commit .DS_Store files
+*.DS_Store
+# Temporary files
+*~
+# Word temporary
+~$*.doc*
+# Excel temporary
+~$*.xls*
+# Excel Backup File
+*.xlk
+# PowerPoint temporary
+~$*.ppt*
 
 # produced vignettes
 vignettes/*.html
