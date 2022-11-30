@@ -9,9 +9,5 @@ assignment of the EES Data Science course in 2022 that is mainly concerned in te
 - The **script** folder contains all R scripts necessary to complete the tutorial
 - **challenge_instructions.md** contains the guidelines for developing this assignment
 
-<<<<<<< HEAD
 ### WELCOME TO THE NMDS COMMUNITY!!
 ## THANKS FOR YOUR TIME AND HAVE A NICE DAY :)
-=======
-## THANKS FOR YOUR TIME AND HAVE A NICE DAY :)
->>>>>>> 35c748bbdb76d99f533143378193fcc37ad1c199
