@@ -63,6 +63,16 @@ legend(1.75, 1.15, title="Distance (m)",
        c("1","3","7","15"), fill=c("darkorchid1", "darkslategray1",
                                         "bisque1", "brown1"), horiz=FALSE, cex=.9)
 
+# save plot
+png("figures/base_NMDSplot.png", width=615, height=500)
+ordiplot(inv.NMDS) # plot shows communities (circles) and species (crosses)
+ordiellipse(inv.NMDS, inverts$Distance, label = FALSE, col=c("darkorchid1", "darkslategray1",
+                                                             "bisque1", "brown1"), draw = "polygon", alpha=120)
+legend(1.65, 1.15, title="Distance (m)",
+       c("1","3","7","15"), fill=c("darkorchid1", "darkslategray1",
+                                   "bisque1", "brown1"), horiz=FALSE, cex=.9)
+dev.off()
+
 # polygon plot
 ordiplot(inv.NMDS)
 ordihull(inv.NMDS, groups = inverts$Distance, draw="polygon", col="grey90", label = TRUE)
@@ -96,7 +106,7 @@ for(g in levels(NMDS1$group)){
 }
 
 # plot
-(inv_plot<- ggplot(data = NMDS1, aes(MDS1, MDS2)) + 
+(inv_NMDSplot<- ggplot(data = NMDS1, aes(MDS1, MDS2)) + 
   geom_point(aes(color = group, shape = group)) + # adding different colours and shapes for points at different distances
   geom_path(data=df_ell1, aes(x=MDS1, y=MDS2, colour=group), linewidth=1) + # use size argument if ggplot2 < v. 3.4.0
   guides(color = guide_legend(override.aes = list(linetype=c(NA,NA,NA,NA)))) + # removes lines from legend
@@ -109,6 +119,8 @@ for(g in levels(NMDS1$group)){
   scale_shape_manual("Distance (m)", # legend title
                      labels = c("1","3","7","15"), # adjusting legend labels
                      values = c(17, 15, 3, 7))) # customising shapes
+# save plot
+ggsave(filename = "figures/invNMDS_plot.png", inv_NMDSplot, device = "png")
 
 # data analysis----
 # using a PERMANOVA to test the differences in community composition
