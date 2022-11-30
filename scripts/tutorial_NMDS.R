@@ -9,7 +9,7 @@
 # set working directory----
 setwd("your_filepath")
 
-# install packages-----
+# install packages (if you haven't already)-----
 install.packages("vegan")
 install.packages("permute")
 install.packages("lattice")
@@ -59,16 +59,16 @@ orditorp(inv.NMDS, display = "sites", cex = 1.25, air = 0.1)
 ordiplot(inv.NMDS) # plot shows communities (circles) and species (crosses)
 ordiellipse(inv.NMDS, inverts$Distance, label = FALSE, col=c("darkorchid1", "darkslategray1",
                                                                "bisque1", "brown1"), draw = "polygon", alpha=120)
-legend(1.75, 1.15, title="Distance (m)",
+legend(1.7, 1.1, title="Distance (m)",
        c("1","3","7","15"), fill=c("darkorchid1", "darkslategray1",
                                         "bisque1", "brown1"), horiz=FALSE, cex=.9)
 
 # save plot
-png("figures/base_NMDSplot.png", width=615, height=500)
+png("figures/base_NMDSplot.png", width=6, height=5, units = "in", res = 300)
 ordiplot(inv.NMDS) # plot shows communities (circles) and species (crosses)
 ordiellipse(inv.NMDS, inverts$Distance, label = FALSE, col=c("darkorchid1", "darkslategray1",
                                                              "bisque1", "brown1"), draw = "polygon", alpha=120)
-legend(1.65, 1.15, title="Distance (m)",
+legend(1.45, 1.15, title="Distance (m)",
        c("1","3","7","15"), fill=c("darkorchid1", "darkslategray1",
                                    "bisque1", "brown1"), horiz=FALSE, cex=.9)
 dev.off()
