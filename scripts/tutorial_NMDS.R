@@ -37,11 +37,12 @@ invert_matrix <- as.matrix(invert_community)
 
 # ordination----
 # now we will proceed to create the ordination
-inv.NMDS <- metaMDS(invert_matrix, distance = "bray", k = 3, trymax=100) 
+inv.NMDS <- metaMDS(invert_matrix, distance = "bray", k = 3, autotransform = TRUE, trymax=100) 
 
 # Bray-Curtis distance is chosen because it is not affected by zero values. 
 # k represents the number of dimensions we want and is used to reduce stress.
-# try max is the number of iterations the algorithm will run
+# autotransform arguments ensures the data does a sqrt transformation
+# trymax is the number of iterations the algorithm will run
 
 # check stress value
 inv.NMDS$stress # ideally stress value is < 0.2
