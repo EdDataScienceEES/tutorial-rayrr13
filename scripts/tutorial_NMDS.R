@@ -41,6 +41,7 @@ inv.NMDS <- metaMDS(invert_matrix, distance = "bray", k = 3, trymax=100)
 
 # Bray-Curtis distance is chosen because it is not affected by zero values. 
 # k represents the number of dimensions we want and is used to reduce stress.
+# try max is the number of iterations the algorithm will run
 
 # check stress value
 inv.NMDS$stress # ideally stress value is < 0.2
