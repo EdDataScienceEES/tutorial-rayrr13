@@ -5,6 +5,7 @@
 This repository is to upload all of the files, data and code related to the tutorial
 assignment of the EES Data Science course in 2022 that is mainly concerned in teaching how to conduct, plot and analyse the results of an NMDS:
 - The **data** folder contains all datasets necessary to complete the tutorial
+- The **docs** folder contains the tutorial itself with the necessary instructions to carry out the tutorial
 - The **figures** folder contains all figures, tables and other outputs that will be generated when completing this tutorial
 - The **script** folder contains all R scripts necessary to complete the tutorial
 - **challenge_instructions.md** contains the guidelines for developing this assignment
