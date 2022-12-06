@@ -1,5 +1,4 @@
 ---
-layout: tutorial
 title: NMDS plotting and analysis using the vegan package
 subtitle: Analysing differences in community composition,
 date: 2022-12-06 20:00:00
@@ -10,36 +9,26 @@ tags: modelling, ecology, species composition
 # NMDS plotting and analysis using the vegan package
 ## Analysing differences in community composition
 ***
-# TUTORIAL ON NMDS
-<center><img src="{{ site.baseurl }}/tutheaderbl.png" alt="Img"></center>
-
-To add images, replace `tutheaderbl1.png` with the file name of any image you upload to your GitHub repository.
-
 ### Tutorial Aims
 
-#### <a href="#section1"> 1. The first section</a>
+#### <a href="#intro"> 1. Learn what Non-metric Multidimensional Scaling is</a>
 
-#### <a href="#section2"> 2. The second section</a>
+#### <a href="#basicNMDS"> 2. Get familiar with conducting a basic NMDS using the `vegan` package</a>
 
-#### <a href="#section3"> 3. The third section</a>
+#### <a href="#NMDSviz"> 3. Generate basic NMDS plots </a>
 
-You can read this text, then delete it and replace it with your text about your tutorial: what are the aims, what code do you need to achieve them?
----------------------------
-We are using `<a href="#section_number">text</a>` to create anchors within our text. For example, when you click on section one, the page will automatically go to where you have put `<a name="section_number"></a>`.
+#### <a href="#advancedNMDSviz"> 4. Generate adavanced NMDS plots</a>
 
-To create subheadings, you can use `#`, e.g. `# Subheading 1` creates a subheading with a large font size. The more hashtags you add, the smaller the text becomes. If you want to make text bold, you can surround it with `__text__`, which creates __text__. For italics, use only one understore around the text, e.g. `_text_`, _text_.
+#### <a href="#stats"> 5. Statistically analyse the results of an NMDS</a>
 
 # Subheading 1
-## Subheading 2
-### Subheading 3
 
 This is some introductory text for your tutorial. Explain the skills that will be learned and why they are important. Set the tutorial in context.
 
-You can get all of the resources for this tutorial from <a href="https://github.com/ourcodingclub/CC-EAB-tut-ideas" target="_blank">this GitHub repository</a>. Clone and download the repo as a zip file, then unzip it.
 
-<a name="section1"></a>
+<a name="intro"></a>
 
-## 1. The first section
+## 1. Learn what Non-metric Multidimensional Scaling is
 
 
 At the beginning of your tutorial you can ask people to open `RStudio`, create a new script by clicking on `File/ New File/ R Script` set the working directory and load some packages, for example `ggplot2` and `dplyr`. You can surround package names, functions, actions ("File/ New...") and small chunks of code with backticks, which defines them as inline code blocks and makes them stand out among the text, e.g. `ggplot2`.
