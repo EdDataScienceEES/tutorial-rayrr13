@@ -5,7 +5,6 @@ subtitle: Analysing differences in community composition,
 date: 2022-12-06 20:00:00
 author: Ray Rubia
 tags: modelling, ecology, species composition
-theme: jekyll-theme-cayman
 ---
 
 # NMDS plotting and analysis using the vegan package
