@@ -9,7 +9,6 @@ tags: modelling, ecology, species composition
 
 # NMDS plotting and analysis using the vegan package
 ## Analysing differences in community composition
-***
 
 # TUTORIAL ON NMDS
 <center><img src="{{ site.baseurl }}/tutheaderbl.png" alt="Img"></center>
