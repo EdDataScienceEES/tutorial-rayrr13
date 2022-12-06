@@ -5,9 +5,6 @@ date: 2022-12-06 20:00:00
 author: Ray Rubia
 tags: modelling, ecology, species composition
 ---
-# NMDS plotting and analysis using the vegan package
-## Analysing differences in community composition in ecology
-***
 As an ecologist, have you ever wondered how to empirically visualise and test differences in community composition? Are you tired of constantly analysing complex diversity indices and their drivers in community ecology? Are you more interested in the assemblage of species/taxonomical units on which these indices build upon? If you've answered YES to any of the questions above then Christmas has come early for you! I present to you... Non-metric Multimensional Scaling (NMDS)!!
 
 This tutorial introduces you to the amazing world of NMDS ordinations, from basic visualization to statistical analysis of the results. This tutorial assumes good understanding of the basic principles of R and RStudio, so
