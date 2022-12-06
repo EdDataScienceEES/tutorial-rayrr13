@@ -171,7 +171,7 @@ plot(inv.dispersion, hull = FALSE, ellipse=TRUE)
 # this is a SIMilarity PERcentage analysis and compares community differences 
 # and reports what species (orders in this scenario)are driving those differences.
 
-inv_simper <- with(inverts[,c(1,2,3,4,5,21)], simper(as.matrix(inverts[,5:20]), Distance, permutations = 100))
+inv_simper <- with(inverts[,c(1,2,3,4,5,21)], simper(as.matrix(inverts[,6:20]), Distance, permutations = 100))
 # with argument indicates what grouping variables to use to conduct the analysis 
 # the number of permutations required to carry out the analysis
 
