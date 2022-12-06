@@ -5,13 +5,25 @@ date: 2022-12-06 20:00:00
 author: Ray Rubia
 tags: modelling, ecology, species composition
 ---
-
 # NMDS plotting and analysis using the vegan package
 ## Analysing differences in community composition
 ***
+As an ecologist, have you ever wondered how to empirically visualise and test differences in community composition? Are you tired of constantly analysing complex diversity indices and their drivers in community ecology? Are you more interested in the assemblage of species/taxonomical units on which these indices build upon? If you've answered YES to any of the questions above then Christmas has come early for you! I present to you... Non-metric Multimensional Scaling (NMDS)!!
+
+This tutorial introduces you to the amazing world of NMDS ordinations, from basic visualization to statistical analysis of the results. This tutorial assumes good understanding of the basic principles of R and RStudio, so
+if you have just started your R journey I suggest you work through <a href="https://ourcodingclub.github.io/tutorials/intro-to-r/" target="_blank">this tutorial</a> from the Coding Club. We will also be visualising data and building statistical models, so I recommend checking out the following tutorials if you aren't familiar with either of these things:
+- Coding Club tutorial on data visualization using `ggplot2` package is available <a href="https://ourcodingclub.github.io/tutorials/datavis/" target="_blank"> here</a>
+- Coding Club tutorial on introduction to model design is available <a href="https://ourcodingclub.github.io/tutorials/model-design/" target="_blank"> here</a>.
+
+Advanced R users may also benefit and gain more from this tutorial by checking out <a href="https://ourcodingclub.github.io/tutorials/ordination/" target="_blank"> this tutorial</a> introducing ordinations and NMDS.
+
+This tutorial will introduce the basics of NMDS ordinations. It will also teach you how to conduct and plot a simple NMDS. The second half of this tutorial is slightly more advanced and explores more advanced NMDS plotting as well as statistical modelling of NMDS results.
+
+All files necessary to follow this tutorial can be found in <a href="https://github.com/EdDataScienceEES/tutorial-rayrr13" target="_blank"> this GitHub repository</a>. Download the repository as a zip file (clicking `Code/Download ZIP` and unzip it in your local machine, or clone the repository to your own GitHub account.
+
 ### Tutorial Aims
 
-#### <a href="#intro"> 1. Learn what Non-metric Multidimensional Scaling is</a>
+#### <a href="#intro"> 1. Learn what Non-metric Multidimensional Scaling (NMDS) is</a>
 
 #### <a href="#basicNMDS"> 2. Get familiar with conducting a basic NMDS using the `vegan` package</a>
 
@@ -21,14 +33,9 @@ tags: modelling, ecology, species composition
 
 #### <a href="#stats"> 5. Statistically analyse the results of an NMDS</a>
 
-# Subheading 1
-
-This is some introductory text for your tutorial. Explain the skills that will be learned and why they are important. Set the tutorial in context.
-
-
 <a name="intro"></a>
 
-## 1. Learn what Non-metric Multidimensional Scaling is
+## 1. Learn what Non-metric Multidimensional Scaling (NMDS) is
 
 
 At the beginning of your tutorial you can ask people to open `RStudio`, create a new script by clicking on `File/ New File/ R Script` set the working directory and load some packages, for example `ggplot2` and `dplyr`. You can surround package names, functions, actions ("File/ New...") and small chunks of code with backticks, which defines them as inline code blocks and makes them stand out among the text, e.g. `ggplot2`.
