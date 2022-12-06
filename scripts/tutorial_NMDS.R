@@ -152,6 +152,21 @@ inv_permanova <- adonis2(as.matrix(inverts [,6:20]) ~ Distance, inverts,
 # look at model output
 inv_permanova
 
+# check model assumptions
+# check for multivariate homogeneity of group variances
+
+# generate distance matrix from invertebrate commumunity matrix
+inv.dist <- vegdist(invert_matrix, method = "bray")
+
+# use betadisper test to check for multivariate homogeneity of group variances 
+inv.dispersion <- betadisper(inv.dist, group=inverts$Distance)
+permutest(inv.dispersion)
+
+# can also visually assess the assumptions
+plot(inv.dispersion, hull = FALSE, ellipse=TRUE)
+
+# OUR MODEL FITS THE ASSUMPTIONS
+
 # simper analysis
 # this is a SIMilarity PERcentage analysis and compares community differences 
 # and reports what species (orders in this scenario)are driving those differences.
