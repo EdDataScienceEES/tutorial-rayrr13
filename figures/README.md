@@ -9,3 +9,5 @@ This folder contains all figures and tables generated from this tutorial:
 - **inv_NMDS_plot.png** is a neat NMDS ellipse plot generated using `ggplot2` 
 - **permanova_assumptions.png** is a visual check of the PERMANOVA model assumption of multivariate homogeneity of variances
 - **permanova_outputs.png** is a screenshot of table containing the summary outputs of our permanova test
+- **simper_ouput.png** is a screenshot of a table containing the summary outputs of our simper analysis
+- **simper_summary.png** is a screenshot of a table containing a more detailed summary of the results of our simper analysis
