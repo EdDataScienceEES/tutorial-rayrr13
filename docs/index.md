@@ -42,7 +42,7 @@ Often in community ecology, research is mainly concerned with studying community
 Non-metric Multidimensional Scaling (NMDS) is a great tool for ecologists to answer this sort of questions. It can condense a lot of information about community species composition into something visible and understandable. For instance, consider a data frame/matrix with relative abundances of different species/other taxonomical units in different communities, where each species/taxonomical unit abundance in the community is an axis and each axis is a dimension (see Figure 1). What NMDS does is summarise all of that information into a 2-dimensional representation, showing the differences in community composition. It tries to represent the original position of a community within a multidimensional space as accurately as possible while also minimising the number of dimensions to easily plot and visualise.
 
 <center><img title = "Multidimensional data example" img src="report_figures/multidimensional_data.png" alt="Img"></center>
-*Figure 1. Example of multidmensional data seen through the lens of community ecology, where each species abundance is an axis and each axis is a dimension. Source: https://jonlefcheck.net/2012/10/24/nmds-tutorial-in-r/*
+*Figure 1. Example of multidimensional data seen through the lens of community ecology, where each species abundance is an axis and each axis is a dimension. Source: https://jonlefcheck.net/2012/10/24/nmds-tutorial-in-r/*
 
 The way NMDS does this is through an indirect gradient analysis ordination approach, meaning it ordinates variables based on scores it generates from a distance matrix. The distance matrix is generated from a community by species (or other taxonomical units) matrix and distances were calculated by comparing pairwise distances (measure of difference in community composition) between 2 different communities in a low dimensional space. This distance matrix represents the compositional dissimilarity between 2 different communities/sites using species counts. But remember, NMDS is a rank-based approach, and once the distances are calculated they are substituted by ranks. The closer two communities are ranked, the more similar composition they have.
 
@@ -122,9 +122,27 @@ invert_matrix <- as.matrix(invert_community)
 
 We can now create our NMDS ordination by using the `metaMDS` function from the `vegan` package. We will save this NMDS as an object in our R environment (called "inv.NMDS").
 ~~~r
-inv.NMDS <- metaMDS(invert_matrix, distance = "bray", k = 3, autotransform = TRUE, trymax=100) 
+inv.NMDS <- metaMDS(invert_matrix, distance = "bray", k = 3, autotransform = TRUE, trymax=100)
 ~~~
 
+Pay attention to the different arguments in the above line of code that illustrate the different decisions we have made. First, we call our newly created matrix object containing a community by order matrix.
+
+Secondly, as classic Euclidean distances are sensitive to species/order abundances or absences, we have decided to use Bray-Curtis as our measure of distance to build our distance (or dissimilarity) matrix on which the NMDS runs on, indicated by the `distance = "bray"` argument. The distance measure used has a strong influence over the analysis and the final output, so selecting the right one is very important. Bray-Curtis is a distance measure commonly used in ecology in this sort of analysis for many reasons: (1) it is often used for raw count data (as is the case with our data), (2) it is invariant to changes in units, (3) it accounts for both species presence/absence as well as species abundance, (4) it is unaffected by additions or removals of species not ubiquitous across all communities, (5) it is unaffected by adding a new community, and (6) it recognizes differences in total species/order abundances when relative abundances are equal.
+
+Next, we need to decide the reduced number of dimensions the NMDS algorithm will ordinate objects in. We communicate this to R through the `k = 3` argument. Increasing the number of dimensions will allow for a better representation of the original multidimensional distance matrix and lower NMDS stress values (goodness of fit). However, the more dimensions, the more challenging the interpretation becomes (especially if k > 3). Therefore, 2 or 3 dimensions are usually the consensus in ecology. We have decided to do 3 dimensions in order to provide a better fit to our data.
+
+The `autotransform = TRUE` argument is simply to ensure that R performs a square-root transformation of the raw data before calculating Bray-Curtis distances (it is standard procedure in an NMDS). This reduces the relative influence of the most abundant species, so that they don't dominate the distance matrix.
+
+Finally, it is worth noting that NMDS is an iterative algorithm, meaning it repeats the same process over and over again until it finds the best solution. The number of iterations you want it to run can be set by using the `trymax = ...` argument. In this case we have decided it to run 100 times. As it is an iterative algorithm, it is recommended to run an NMDS multiple times to ensure a stable solution has been reached.
+
+Lets now assess how well our ordination has fitted our data by looking at its stress value:
+
+~~~r
+# check stress value
+inv.NMDS$stress # ideally stress value is < 0.2
+~~~
+
+####**<span style="color:red">Warnings:</span>**
 
 <a name="NMDSviz"></a>
 
