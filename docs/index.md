@@ -1,6 +1,6 @@
 ---
 title: NMDS plotting and analysis using the vegan package
-subtitle: Analysing differences in community composition in ecology
+subtitle: Analysing differences in ecological community compositions
 date: 2022-12-06 20:00:00
 author: Ray Rubia
 tags: modelling, ecology, species composition
@@ -19,7 +19,7 @@ Advanced R users may also benefit and gain more from this tutorial by checking o
 
 This tutorial will introduce the basics of NMDS ordinations. It will also teach you how to conduct and plot a simple NMDS. The second half of this tutorial is slightly more advanced and explores more advanced NMDS plotting as well as statistical modelling of NMDS results.
 
-All files necessary to follow this tutorial can be found in <a href="https://github.com/EdDataScienceEES/tutorial-rayrr13" target="_blank"> this GitHub repository</a>. Download the repository as a zip file (clicking `Code/Download ZIP`) and unzip it in your local machine, or clone the repository to your own GitHub account.
+All files necessary to follow this tutorial can be found in <a href="https://github.com/EdDataScienceEES/tutorial-rayrr13" target="_blank"> this GitHub repository</a>. Download the repository as a ZIP file (clicking `Code/Download ZIP`) and unzip it in your local machine, or clone the repository to your own GitHub account.
 
 ### Tutorial Aims
 
@@ -37,6 +37,13 @@ All files necessary to follow this tutorial can be found in <a href="https://git
 
 ## 1. Learn what Non-metric Multidimensional Scaling (NMDS) is
 
+Often in community ecology, research is mainly concerned with studying community diversity and its drivers. However, we are not only interested in how single variables affect/describe communities, we are also intrigued by the community composition itself. The assemblage of species/taxonomic units making up a community is of monumental significance as it determines the functional diversity of a community. Functional diversity encompasses all of the organismal traits that rule ecosystem functioning, dynamics, productivity and stability. This in turn will determine the ecosystem services that us as humans can yield from different habitats. Thus, it is important to understand community assemblages and identify their influencing factors. Nevertheless, these differences in community assemblages are hard and tedious to analyse so they tend to be overlooked.
+
+
+
+<a name="basicNMDS"></a>
+
+## 2. Get familiar with conducting a basic NMDS using the `vegan` package
 
 At the beginning of your tutorial you can ask people to open `RStudio`, create a new script by clicking on `File/ New File/ R Script` set the working directory and load some packages, for example `ggplot2` and `dplyr`. You can surround package names, functions, actions ("File/ New...") and small chunks of code with backticks, which defines them as inline code blocks and makes them stand out among the text, e.g. `ggplot2`.
 
@@ -53,10 +60,9 @@ library(ggplot2)
 library(dplyr)
 ```
 
-<a name="basicNMDS"></a>
+<a name="NMDSviz"></a>
 
-## 2. Get familiar with conducting a basic NMDS using the `vegan` package
-
+## 3. Generate basic NMDS plots
 You can add more text and code, e.g.
 
 ```r
@@ -85,11 +91,15 @@ At this point it would be a good idea to include an image of what the plot is me
 
 <center> <img src="{{ site.baseurl }}/IMAGE_NAME.png" alt="Img" style="width: 800px;"/> </center>
 
-<a name="NMDSviz"></a>
+<a name="advancedNMDSviz"></a>
 
-## 3. Generate basic NMDS plots
-
+## 4. Generate advanced NMDS plots
 More text, code and images.
+
+
+<a name="stats"></a>
+
+## 5. Statistically analyse the results of an NMDS</a>
 
 This is the end of the tutorial. Summarise what the student has learned, possibly even with a list of learning outcomes. In this tutorial we learned:
 
@@ -102,15 +112,6 @@ We can also provide some useful links, include a contact form and a way to send 
 For more on `ggplot2`, read the official <a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf" target="_blank">ggplot2 cheatsheet</a>.
 
 Everything below this is footer material - text and links that appears at the end of all of your tutorials.
-
-<a name="advancedNMDSviz"></a>
-
-## 4. Generate advanced NMDS plots
-
-<a name="stats"></a>
-
-## 5. Statistically analyse the results of an NMDS</a>
-
 <hr>
 <hr>
 
