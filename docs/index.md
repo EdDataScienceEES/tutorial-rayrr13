@@ -180,11 +180,72 @@ ordiplot(inv.NMDS, type = "n") # create blank ordination plot
 orditorp(inv.NMDS, display = "species", col="red", air = 0.1) # add order names in red
 orditorp(inv.NMDS, display = "sites", cex = 1.25, air = 0.1) # add site numbers in black
 ~~~
-<center><img title = "Basic NMDS plot" img src="report_figures/base_NMDSplot_messy.png" alt="Img"></center>
+<center><img title = "Messy basic NMDS plot" img src="report_figures/base_NMDSplot_messy.png" alt="Img"></center>
 *Figure 3. NMDS representation with numbers representing the different sites and labels indicating the different species.*
+
 We can now see what dot corresponds to each community and what cross
 corresponds to each invertebrate order. The `air = ...` argument is simply just to add empty space around text labels. Nevertheless, the plot still looks a bit confusing and messy. It isn't telling us anything about the relationship between different environmental variables and community composition. It is simply telling us what communities are more similar to one another without giving any background environmental information for these communities.
 
+Luckily enough, `vegan` has a solution to this! – It allows you to plot different shapes or lines around communities based on different grouping factors. Our research question is mainly concerned with how distance from disturbance (paths) affects invertebrate community composition. Thus, using the functionality of the `vegan` package we can add different shapes or lines grouping together communities (dots on the NMDS plot) at different distances. These plots can be ellipse plots, polygon plots or spider plots, among many others. This will allow us to understand our NMDS plots much better and will give a better visual representation of the effect distance from paths (disturbances) on community composition.
+
+As it is my personal favourite and I think it is the best at depicting differences, I will thoroughly demonstrate how to create an ellipse plot using the `ordiellipse()` function from the `vegan` package and add all of the corresponding aesthetics. I will provide the key code to generate spider and polygon plots. If you prefer these and want to further develop them into a nicer plot, the aesthetics work exactly the same as for the ellipse plot.
+
+#### Ellipse plot
+
+We first create an NMDS ordination plot showing the dots (communities) and crosses (species, or orders in this case) and then overwrite this plot and add the ellipses grouping communities according to their distances from paths using the `ordiellipse()` functions. This will allow us to see if there is any distinction in community composition at different distances from paths. The less overlap there is among the ellipses, the more distinct communities at different distances from disturbances are. The rest of the arguments are for aesthetics: adding different colours to the ellipses, adjusting their transparency, removing title and adding a legend with the corresponding title and labels. You can adjust these aesthetics depending on personal preference.
+
+~~~r
+# ellipse plot
+ordiplot(inv.NMDS) # plot shows communities (circles) and species (crosses)
+ordiellipse(inv.NMDS, inverts$Distance, label = FALSE,
+            col=c("darkorchid1", "darkslategray1", "bisque1", "brown1"),
+            draw = "polygon", alpha=120) # adding ellipses to the plot
+legend("topright", title="Distance (m)",
+       c("1","3","7","15"), fill=c("darkorchid1", "darkslategray1", "bisque1",
+                                   "brown1"), horiz=FALSE, cex=.9) # adding a legend
+
+# save plot
+png("your_filepath/image.png", width=6, height=5, units = "in", res = 300)
+ordiplot(inv.NMDS)
+ordiellipse(inv.NMDS, inverts$Distance, label = FALSE,
+            col=c("darkorchid1", "darkslategray1","bisque1", "brown1"),
+            draw = "polygon", alpha=120)
+legend("topright", title="Distance (m)",
+       c("1","3","7","15"), fill=c("darkorchid1", "darkslategray1",
+                                   "bisque1", "brown1"), horiz=FALSE, cex=.9)
+dev.off()
+~~~
+The plot should end up looking something like this:
+<center><img title = "NMDS ellipse plot" img src="report_figures/base_NMDSplot.png" alt="Img"></center>
+*Figure 4. NMDS ellipse plot showing invertebrate community order composition at different distances from disturbances (paths)*
+
+#### Polygon plot
+Polygon plots are created just the same as ellipse plots, the only difference is that now we are using the `ordihull()` function rather than `ordiellipse()` to add polygons surrounding communities at different distances from  paths. If you want to add aesthetics or save this plot the code and arguments work exactly the same as for ellipse plots.
+
+~~~r
+# polygon plot
+ordiplot(inv.NMDS) #plot shows communities (circles) and species (crosses)
+ordihull(inv.NMDS, groups = inverts$Distance, draw="polygon", col="grey90", label = TRUE) # adding polygons
+~~~
+The plot should end up looking something like this:
+<center><img title = "NMDS polygon plot" img src="report_figures/base_NMDS_polygon_plot.png" alt="Img"></center>
+*Figure 5. NMDS polygon plot showing invertebrate community order composition at different distances from disturbances (paths)*
+
+#### Spider plot
+Spider plots are created just the same as ellipse and polygon plots, the only difference is that now we are using the `ordispider()` function to add lines connecting all of the communities that are found at the same distance from disturbances. This way, we can see what communities are found at different distances and see if there are any distinctions in community assemblages. If you want to add aesthetics or save this plot the code and arguments work exactly the same as for ellipse plots.
+
+~~~r
+# spider plot
+ordiplot(inv.NMDS) #plot shows communities (circles) and species (crosses)
+ordispider(inv.NMDS, groups = inverts$Distance, label = TRUE) # adding spider plot
+~~~
+The plot should look something like this:
+<center><img title = "NMDS spider plot" img src="report_figures/base_NMDS_spider_plot.png" alt="Img"></center>
+*Figure 6. NMDS spider plot showing invertebrate community order composition at different distances from disturbances (paths)*
+
+Phew! That was a lot of information to take in! We are now going to move on to more advanced NMDS plotting and some statistical analysis but let's take a breath first! Help yourself to a cup of tea or coffee or any other beverage of your choice. Get some fresh air and come prepared to tackle the second half of this tutorial!
+
+*P.S. Don't be afraid to go over this first half again or revisit certain topics/definitions if you are struggling with grasping some of the concepts*
 
 <a name="advancedNMDSviz"></a>
 
