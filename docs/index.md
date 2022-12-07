@@ -57,6 +57,7 @@ If you are still not convinced enough to use NMDS to analyse differences in comm
 	- Not sensitive to data transformation as absolute distance doesn't matter
 - Can group communities based on quantitative, qualitative or mixed variables
 - It is a commonly used technique in community ecology and has a well-precedented use
+- It can be used for any taxonomic group, not just species, as long as the data fits your research question
 
 Hopefully, you understand some of this hard theory and have a better understanding of what an NMDS is and how it works. To help you grasp and comprehend these concepts even better, we are going to illustrate them by running an example NMDS.
 
@@ -81,22 +82,18 @@ library(permute) # necessary to run vegan package
 library(lattice) # necessary to run vegan package
 library(tidyverse) # for efficient data manipulation and visualization, contains ggplot2, dplyr and tidyr packages
 ~~~
-*Note: If you haven't installed these packages on your R environment yet you can run the code `install.packages("package_name")`. The packages `permute` and `lattice` are necessary to ensure smooth running of all of the functions on the `vegan` package*
+*Note: If you haven't installed these packages on your R environment yet you can run the code `install.packages("package_name")` to install them. The packages `permute` and `lattice` are necessary to ensure smooth running of all of the functions on the `vegan` package*
 
-At the beginning of your tutorial you can ask people to open `RStudio`, create a new script by clicking on `File/ New File/ R Script` set the working directory and load some packages, for example `ggplot2` and `dplyr`. You can surround package names, functions, actions ("File/ New...") and small chunks of code with backticks, which defines them as inline code blocks and makes them stand out among the text, e.g. `ggplot2`.
+Some brief background for our research question today: The IDH essentially states that diversity is maximised at intermediate levels of disturbance. At high levels of disturbance, good dispersers dominate the communities, not giving strong competitors a chance to settle. Conversely, at low rates of disturbance, stronger competitors dominate and competitively exclude weaker competitors (tend to be the good dispersers) and dominate the community. Thus, at different levels of disturbance, community assemblages should be different as at high levels we have rapid colonising species and at low levels we have competitively dominant species.
 
-When you have a larger chunk of code, you can paste the whole code in the `Markdown` document and add three backticks on the line before the code chunks starts and on the line after the code chunks ends. After the three backticks that go before your code chunk starts, you can specify in which language the code is written, in our case `R`.
+Now we can import our dataset. This data set was collected near Oban, Scotland during an undergraduate ecology field course by University of Edinburgh undergraduate students. It was collected to test the accuracy of the classic intermediate disturbance hypothesis (IDH) in predicting how the frequency and intensity of disturbances affects diversity. The data can be found in the repository under `data/ invert_data.csv` and can be imported as follows:
+~~~r
+# import data----
+inverts <- read.csv("data/invert_data.csv")
+~~~
 
-To find the backticks on your keyboard, look towards the top left corner on a Windows computer, perhaps just above `Tab` and before the number one key. On a Mac, look around the left `Shift` key. You can also just copy the backticks from below.
-
-```r
-# Set the working directory
-setwd("your_filepath")
-
-# Load packages
-library(ggplot2)
-library(dplyr)
-```
+The data consists of invertebrate order abundance measured at varying distances from paths (1, 3, 7 and 15 m). Distance from paths was used as a proxy to quantify different levels of disturbance. Data was collected at 5 different grassland sites around Oban, Scotland. The aim of the study is to see if communities at different distances from paths had different community composition and provided empirical evidence supporting the IDH. This leaves us with the following research question for our study: **Does the order composition of invertebrate communities vary at different distances from paths?**
+*Note: In this case we can use order as our taxonomical unit of interest rather than species as it is the functional traits and their diversity (competitors vs dispersers) we are interested in, not the species themselves.*
 
 <a name="NMDSviz"></a>
 
