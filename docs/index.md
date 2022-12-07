@@ -190,7 +190,7 @@ Luckily enough, `vegan` has a solution to this! – It allows you to plot differ
 
 As it is my personal favourite and I think it is the best at depicting differences, I will thoroughly demonstrate how to create an ellipse plot using the `ordiellipse()` function from the `vegan` package and add all of the corresponding aesthetics. I will provide the key code to generate spider and polygon plots. If you prefer these and want to further develop them into a nicer plot, the aesthetics work exactly the same as for the ellipse plot.
 
-#### Ellipse plot
+#### **Ellipse plot**
 
 We first create an NMDS ordination plot showing the dots (communities) and crosses (species, or orders in this case) and then overwrite this plot and add the ellipses grouping communities according to their distances from paths using the `ordiellipse()` functions. This will allow us to see if there is any distinction in community composition at different distances from paths. The less overlap there is among the ellipses, the more distinct communities at different distances from disturbances are. The rest of the arguments are for aesthetics: adding different colours to the ellipses, adjusting their transparency, removing title and adding a legend with the corresponding title and labels. You can adjust these aesthetics depending on personal preference.
 
@@ -219,7 +219,7 @@ The plot should end up looking something like this:
 <center><img title = "NMDS ellipse plot" img src="report_figures/base_NMDSplot.png" alt="Img"></center>
 *Figure 4. NMDS ellipse plot showing invertebrate community order composition at different distances from disturbances (paths)*
 
-#### Polygon plot
+#### **Polygon plot**
 Polygon plots are created just the same as ellipse plots, the only difference is that now we are using the `ordihull()` function rather than `ordiellipse()` to add polygons surrounding communities at different distances from  paths. If you want to add aesthetics or save this plot the code and arguments work exactly the same as for ellipse plots.
 
 ~~~r
@@ -231,7 +231,7 @@ The plot should end up looking something like this:
 <center><img title = "NMDS polygon plot" img src="report_figures/base_NMDS_polygon_plot.png" alt="Img"></center>
 *Figure 5. NMDS polygon plot showing invertebrate community order composition at different distances from disturbances (paths)*
 
-#### Spider plot
+#### **Spider plot**
 Spider plots are created just the same as ellipse and polygon plots, the only difference is that now we are using the `ordispider()` function to add lines connecting all of the communities that are found at the same distance from disturbances. This way, we can see what communities are found at different distances and see if there are any distinctions in community assemblages. If you want to add aesthetics or save this plot the code and arguments work exactly the same as for ellipse plots.
 
 ~~~r
@@ -243,7 +243,7 @@ The plot should look something like this:
 <center><img title = "NMDS spider plot" img src="report_figures/base_NMDS_spider_plot.png" alt="Img"></center>
 *Figure 6. NMDS spider plot showing invertebrate community order composition at different distances from disturbances (paths)*
 
-Phew! That was a lot of information to take in! We are now going to move on to more advanced NMDS plotting and some statistical analysis but let's take a breath first! Help yourself to a cup of tea or coffee or any other beverage of your choice. Get some fresh air and come prepared to tackle the second half of this tutorial!
+Phew!! That was a lot of information to take in! We are now going to move on to more advanced NMDS plotting and some statistical analysis but let's take a breath first! Help yourself to a cup of tea or coffee or any other beverage of your choice. Get some fresh air and come prepared to tackle the second half of this tutorial!
 
 *P.S. Don't be afraid to go over this first half again or revisit certain topics/definitions if you are struggling with grasping some of the concepts*
 
@@ -251,12 +251,13 @@ Phew! That was a lot of information to take in! We are now going to move on to m
 
 ## 4. Generate advanced NMDS plots
 ***
-More text, code and images.
+Although we ended last section with some pretty neat ordination plots, there is still room for improvement and our plots can be more aesthetics, up to professional standard. This is where the `ggplot2` package comes in handy, the legend of data visualization in R.
 
+In this section, we are going to learn how to plot an NMDS ellipse plot using `ggplot2`. Once again, I have decided to do the ellipse plot as it is my personal favourite, but it is also possible to generate spider and polygon NMDS plots in `ggplot2`
 
 <a name="stats"></a>
 
-## 5. Statistically analyse the results of an NMDS</a>
+## 5. Statistically analyse the results of an NMDS
 ***
 
 This is the end of the tutorial. Summarise what the student has learned, possibly even with a list of learning outcomes. In this tutorial we learned:
