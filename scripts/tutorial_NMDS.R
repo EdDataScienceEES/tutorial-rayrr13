@@ -48,11 +48,11 @@ inv.NMDS <- metaMDS(invert_matrix, distance = "bray", k = 3, autotransform = TRU
 inv.NMDS$stress # ideally stress value is < 0.2
 
 # data visualization----
-# using Base R
+# using vegan package and Base R
 plot(inv.NMDS) # circles show different communities/sites, crosses show different species
 ordiplot(inv.NMDS, type = "n") # create blank ordination plot
-orditorp(inv.NMDS, display = "species", col="red", air = 0.1) # add species
-orditorp(inv.NMDS, display = "sites", cex = 1.25, air = 0.1) # add sites
+orditorp(inv.NMDS, display = "species", col="red", air = 0.1) # add order names in red
+orditorp(inv.NMDS, display = "sites", cex = 1.25, air = 0.1) # add site numbers in black
 
 # by distance
 # ellipse plot

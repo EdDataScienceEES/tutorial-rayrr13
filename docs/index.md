@@ -36,6 +36,7 @@ All files necessary to follow this tutorial can be found in <a href="https://git
 <a name="intro"></a>
 
 ## 1. Learn what Non-metric Multidimensional Scaling (NMDS) is
+***
 
 Often in community ecology, research is mainly concerned with studying community diversity and its drivers. However, we are not only interested in how single variables affect/describe communities, we are also intrigued by the community composition itself. The assemblage of species/taxonomic units making up a community is of monumental significance as it determines the functional diversity of a community. Functional diversity encompasses all of the organismal traits that rule ecosystem functioning, dynamics, productivity and stability. This in turn will determine the ecosystem services that us as humans can yield from different habitats. Thus, it is important to understand community assemblages and identify their influencing factors. Nevertheless, these differences in community assemblages are hard and tedious to analyse so they tend to be overlooked.
 
@@ -66,6 +67,7 @@ Warnings about NMDS (maybe save for later section)
 <a name="basicNMDS"></a>
 
 ## 2. Get familiar with conducting a basic NMDS using the `vegan` package
+***
 
 Let's get NMDSing!!
 
@@ -151,11 +153,13 @@ And there you have it! You have now built your first NMDS, well done! We are now
 - Do not relate environmental variables to an NMDS ordination as it is only an approximate representation of the distance matrix. It is more relevant to relate variables to the distance matrix itself
 - NMDS can be computationally demanding for large datasets
 - As it is an iterative algorithm, each NMDS ordination or plot you generate from scratch can look slightly different.
+- If you have an extremely low stress value your data might have too many zeros. R usually gives you a warning message about this anyways.
 
 <a name="NMDSviz"></a>
 
 ## 3. Generate basic NMDS plots
-Let's get straight into plotting our NMDS! We will first use the `vegan` package and `Base R` to generate some simple NMDS plots. More advanced NMDS plotting using `ggplot2` will be explored in <a href="#advancedNMDSviz"> section 4</a>.
+***
+Let's get straight into plotting our NMDS! We will first use the `vegan` package and `Base R` to generate some simple NMDS plots. More advanced NMDS plotting using `ggplot2` will be explored in <a href="#advancedNMDSviz"> section 4</a> of this tutorial.
 
 Let's start by plotting the most basic of NMDS plots.
 ~~~r
@@ -167,16 +171,32 @@ plot(inv.NMDS) # circles show different communities/sites, crosses show differen
 This should generate the following plot:
 
 <center><img title = "Basic NMDS plot" img src="report_figures/NMDS_most_basic_plot.png" alt="Img"></center>
+*Figure 2. Basic representation of an NMDS, where circles show different communities and crosses show different invertebrate orders.*
+
+As you can see, this plot doesn't give away much information. Each dot represents a different community and each cross represents a different invertebrate order. The closer 2 points are, the more similar those communities are in terms of composition. However, here it is hard to identify the position of different communities or species because there are no labels or no other indicators. Let's add these! We will use the `ordiplot` and `orditorp` plotting functions embedded in the `vegan` package.
+
+~~~r
+ordiplot(inv.NMDS, type = "n") # create blank ordination plot
+orditorp(inv.NMDS, display = "species", col="red", air = 0.1) # add order names in red
+orditorp(inv.NMDS, display = "sites", cex = 1.25, air = 0.1) # add site numbers in black
+~~~
+<center><img title = "Basic NMDS plot" img src="report_figures/base_NMDSplot_messy.png" alt="Img"></center>
+*Figure 3. NMDS representation with numbers representing the different sites and labels indicating the different species.*
+We can now see what dot corresponds to each community and what cross
+corresponds to each invertebrate order. The `air = ...` argument is simply just to add empty space around text labels. Nevertheless, the plot still looks a bit confusing and messy. It isn't telling us anything about the relationship between different environmental variables and community composition. It is simply telling us what communities are more similar to one another without giving any background environmental information for these communities.
+
 
 <a name="advancedNMDSviz"></a>
 
 ## 4. Generate advanced NMDS plots
+***
 More text, code and images.
 
 
 <a name="stats"></a>
 
 ## 5. Statistically analyse the results of an NMDS</a>
+***
 
 This is the end of the tutorial. Summarise what the student has learned, possibly even with a list of learning outcomes. In this tutorial we learned:
 
