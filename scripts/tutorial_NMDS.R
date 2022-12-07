@@ -19,7 +19,7 @@ install.packages("tidyverse")
 library(vegan) # for diversity analysis and ordination methods
 library(permute) # necessary to run vegan package
 library(lattice) # necessary to run vegan package
-library(tidyverse) # for efficient data manipulation and visualization
+library(tidyverse) # for efficient data manipulation and visualization, contains ggplot2, dplyr and tidyr packages
 
 # import data----
 inverts <- read.csv("data/invert_data.csv")

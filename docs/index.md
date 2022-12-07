@@ -68,6 +68,21 @@ Warnings about NMDS (maybe save for later section)
 
 Let's get NMDSing!!
 
+You can either run this tutorial by running the pre-written script for this tutorial (see `scripts/tutorial_NMDS.R` in the tutorial repository) or by creating an empty script in R by clicking on `File/New File/ R Script` where you can add your own notes and annotations to the code.
+
+Start by setting your working directory to the file path where you have all of the necessary files for this tutorial (probably the folder you just downloaded) and load the packages necessary for this tutorial. This tutorial will be mainly based around the `vegan` package in R which is a great tool for descriptive community ecology analysis e.g. ordinations, diversity analysis and community dissimilarity analysis. This package was developed in GitHub by Finnish community ecologist Jari Oksanen and his development team.
+~~~r
+# set working directory----
+setwd("your_filepath")
+
+# load libraries----
+library(vegan) # for diversity analysis and ordination methods
+library(permute) # necessary to run vegan package
+library(lattice) # necessary to run vegan package
+library(tidyverse) # for efficient data manipulation and visualization, contains ggplot2, dplyr and tidyr packages
+~~~
+*Note: If you haven't installed these packages on your R environment yet you can run the code `install.packages("package_name")`. The packages `permute` and `lattice` are necessary to ensure smooth running of all of the functions on the `vegan` package*
+
 At the beginning of your tutorial you can ask people to open `RStudio`, create a new script by clicking on `File/ New File/ R Script` set the working directory and load some packages, for example `ggplot2` and `dplyr`. You can surround package names, functions, actions ("File/ New...") and small chunks of code with backticks, which defines them as inline code blocks and makes them stand out among the text, e.g. `ggplot2`.
 
 When you have a larger chunk of code, you can paste the whole code in the `Markdown` document and add three backticks on the line before the code chunks starts and on the line after the code chunks ends. After the three backticks that go before your code chunk starts, you can specify in which language the code is written, in our case `R`.
