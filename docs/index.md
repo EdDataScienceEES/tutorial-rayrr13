@@ -145,7 +145,6 @@ inv.NMDS$stress # ideally stress value is < 0.2
 The stress of an NMDS indicates its goodness of fit. It is essentially the distance between the reduced dimensional space and the complete one. NMDS tries to optimise this as much as possible and it can be reduced by increasing the dimensionality of your ordination. Generally, stress values < 0.2 are considered a good fit, and stress values under 0.1 or 0.05 are ideal. In this case, we have a stres value of `~0.114`, indicating our ordination is a good fit for our data. The stress value of an NMDS should always be reported in the NMDS figure or NMDS figure caption.
 
 And there you have it! You have now built your first NMDS, well done! We are now going to move on to the fun and interesting part which is plotting our NMDS results! But before, a few warnings to consider when working with an NMDS ordination:
-
 #### **<span style="color:red">Warnings:</span>**
 - Beware of NMDS interpretation if you have high stress values
 - After running an NMDS, the generated distance matrix is no longer raw dat as pairwise distances have been calculated from that data, making the distance data interdependent
@@ -156,33 +155,18 @@ And there you have it! You have now built your first NMDS, well done! We are now
 <a name="NMDSviz"></a>
 
 ## 3. Generate basic NMDS plots
-You can add more text and code, e.g.
+Let's get straight into plotting our NMDS! We will first use the `vegan` package and `Base R` to generate some simple NMDS plots. More advanced NMDS plotting using `ggplot2` will be explored in <a href="#advancedNMDSviz"> section 4</a>.
 
-```r
-# Create fake data
-x_dat <- rnorm(n = 100, mean = 5, sd = 2)  # x data
-y_dat <- rnorm(n = 100, mean = 10, sd = 0.2)  # y data
-xy <- data.frame(x_dat, y_dat)  # combine into data frame
-```
+Let's start by plotting the most basic of NMDS plots.
+~~~r
+# data visualization----
+# using vegan package and Base R
+plot(inv.NMDS) # circles show different communities/sites, crosses show different species
+~~~
 
-Here you can add some more text if you wish.
+This should generate the following plot:
 
-```r
-xy_fil <- xy %>%  # Create object with the contents of `xy`
-	filter(x_dat < 7.5)  # Keep rows where `x_dat` is less than 7.5
-```
-
-And finally, plot the data:
-
-```r
-ggplot(data = xy_fil, aes(x = x_dat, y = y_dat)) +  # Select the data to use
-	geom_point() +  # Draw scatter points
-	geom_smooth(method = "loess")  # Draw a loess curve
-```
-
-At this point it would be a good idea to include an image of what the plot is meant to look like so students can check they've done it right. Replace `IMAGE_NAME.png` with your own image file:
-
-<center> <img src="{{ site.baseurl }}/IMAGE_NAME.png" alt="Img" style="width: 800px;"/> </center>
+<center><img title = "Basic NMDS plot" img src="report_figures/NMDS_most_basic_plot.png" alt="Img"></center>
 
 <a name="advancedNMDSviz"></a>
 
