@@ -59,13 +59,13 @@ orditorp(inv.NMDS, display = "sites", cex = 1.25, air = 0.1) # add site numbers 
 ordiplot(inv.NMDS) # plot shows communities (circles) and species (crosses)
 ordiellipse(inv.NMDS, inverts$Distance, label = FALSE, 
             col=c("darkorchid1", "darkslategray1", "bisque1", "brown1"), 
-            draw = "polygon", alpha=120) # adding ellipses to the plot
+            draw = "polygon", alpha=120) # adding ellipses to the plot, grouping by distance (inverts$Distance)
 legend("topright", title="Distance (m)",
        c("1","3","7","15"), fill=c("darkorchid1", "darkslategray1", "bisque1", 
                                    "brown1"), horiz=FALSE, cex=.9) # adding a legend
 
 # save plot
-png("figures/base_NMDSplot.png", width=6, height=5, units = "in", res = 300)
+png("your_filepath/figure.png", width=6, height=5, units = "in", res = 300)
 ordiplot(inv.NMDS)
 ordiellipse(inv.NMDS, inverts$Distance, label = FALSE, 
             col=c("darkorchid1", "darkslategray1","bisque1", "brown1"), 
@@ -77,11 +77,11 @@ dev.off()
 
 # polygon plot
 ordiplot(inv.NMDS) #plot shows communities (circles) and species (crosses)
-ordihull(inv.NMDS, groups = inverts$Distance, draw="polygon", col="grey90", label = TRUE) # adding polygons
+ordihull(inv.NMDS, groups = inverts$Distance, draw="polygon", col="grey90", label = TRUE) # adding polygons to the plot, grouping by distance (inverts$Distance)
 
 # spider plot
 ordiplot(inv.NMDS) #plot shows communities (circles) and species (crosses)
-ordispider(inv.NMDS, groups = inverts$Distance, label = TRUE) # adding spider plot
+ordispider(inv.NMDS, groups = inverts$Distance, label = TRUE) # adding spider plot, grouping by distance (inverts$Distance)
 
 
 # using ggplot to make an ellipse plot
@@ -97,7 +97,7 @@ nmds.scores <- nmds.scores %>%
   mutate(Site = as.factor(inverts$Site), Path.Type = as.factor(inverts$Path.Type), 
          Transect = as.factor(inverts$Transect), Distance = as.factor(inverts$Distance))
 
-# check dataframe
+# check dataframe to ensure all changes have taken place
 head(nmds.scores) 
 str(nmds.scores)
 
@@ -136,7 +136,7 @@ for(g in levels(nmds.scores$Distance)){
                        labels = c("1","3","7","15"), # adjusting legend labels
                        values = c(17, 15, 3, 7))) # customising shapes
 # save plot
-ggsave(filename = "figures/inv_NMDS_plot.png", inv_NMDS_plot, device = "png")
+ggsave(filename = "your_filepath/figure.png", inv_NMDS_plot, device = "png")
 
 # data analysis----
 # using a PERMANOVA to test the differences in community composition

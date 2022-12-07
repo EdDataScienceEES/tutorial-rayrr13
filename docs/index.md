@@ -94,7 +94,7 @@ Now we can import our dataset. This data set was collected near Oban, Scotland d
 inverts <- read.csv("data/invert_data.csv")
 ~~~
 
-The data consists of invertebrate order abundance measured at varying distances from paths (1, 3, 7 and 15 m). Distance from paths was used as a proxy to quantify different levels of disturbance. Data was collected using 1 m<sup>2</sup> quadrats at each distance at 5 different grassland sites, along 3 different transects in each site, around Oban, Scotland, giving a total sample size of *n = 60*. The aim of the study is to see if communities at different distances from paths had different community composition and provided empirical evidence supporting the IDH. This leaves us with the following research question for our study: **Does the order composition of invertebrate communities vary at different distances from paths?**
+The data consists of invertebrate order abundance measured at varying distances from paths (1, 3, 7 and 15 m). Distance from paths was used as a proxy to quantify different levels of disturbance. Data was collected using pitfall traps at each distance at 5 different grassland sites, along 3 different transects in each site, around Oban, Scotland, giving a total sample size of *n = 60*. The aim of the study is to see if communities at different distances from paths had different community composition and provided empirical evidence supporting the IDH. This leaves us with the following research question for our study: **Does the order composition of invertebrate communities vary at different distances from paths?**
 
 *Note: In this case we can use order as our taxonomical unit of interest rather than species as it is the functional traits and their diversity (competitors vs dispersers) we are interested in, not the species themselves.*
 
@@ -109,7 +109,7 @@ head(inverts)
 str(inverts)
 ~~~
 
-We can see that the dataset contains columns with information about environmental variables such as the site the data was collected at, the path type, the transect number and the distance from the path of each community. The "Orders" column indicates the total amount of orders found in each quadrat. The "Abundance" column indicates the total number of individuals found in each quadrat. However, we are more interested in all of the other columns which have information about invertebrate order abundance in the different communities. Each column is a different order and it contains information about that order's abundance in different communities. This will be the crucial data we use to construct our NMDS.
+We can see that the dataset contains columns with information about environmental variables such as the site the data was collected at, the path type, the transect number and the distance from the path of each community. The "Orders" column indicates the total amount of orders found in each pitfall trap. The "Abundance" column indicates the total number of individuals found in each pitfall trap. However, we are more interested in all of the other columns which have information about invertebrate order abundance in the different communities. Each column is a different order and it contains information about that order's abundance in different communities. This will be the crucial data we use to construct our NMDS.
 
 *Note: this data is in wide format. If your data is in long format and all variables regarding species abundance in a single column, you want to convert this data to wide format. This can be done using the `spread()` function from the `dplyr` package.*
 
@@ -199,7 +199,7 @@ We first create an NMDS ordination plot showing the dots (communities) and cross
 ordiplot(inv.NMDS) # plot shows communities (circles) and species (crosses)
 ordiellipse(inv.NMDS, inverts$Distance, label = FALSE,
             col=c("darkorchid1", "darkslategray1", "bisque1", "brown1"),
-            draw = "polygon", alpha=120) # adding ellipses to the plot
+            draw = "polygon", alpha=120) # adding ellipses to the plot, grouping by distance (inverts$Distance)
 legend("topright", title="Distance (m)",
        c("1","3","7","15"), fill=c("darkorchid1", "darkslategray1", "bisque1",
                                    "brown1"), horiz=FALSE, cex=.9) # adding a legend
@@ -225,7 +225,7 @@ Polygon plots are created just the same as ellipse plots, the only difference is
 ~~~r
 # polygon plot
 ordiplot(inv.NMDS) #plot shows communities (circles) and species (crosses)
-ordihull(inv.NMDS, groups = inverts$Distance, draw="polygon", col="grey90", label = TRUE) # adding polygons
+ordihull(inv.NMDS, groups = inverts$Distance, draw="polygon", col="grey90", label = TRUE) # adding polygons to the plot, grouping by distance (inverts$Distance)
 ~~~
 The plot should end up looking something like this:
 <center><img title = "NMDS polygon plot" img src="report_figures/base_NMDS_polygon_plot.png" alt="Img"></center>
@@ -237,7 +237,7 @@ Spider plots are created just the same as ellipse and polygon plots, the only di
 ~~~r
 # spider plot
 ordiplot(inv.NMDS) #plot shows communities (circles) and species (crosses)
-ordispider(inv.NMDS, groups = inverts$Distance, label = TRUE) # adding spider plot
+ordispider(inv.NMDS, groups = inverts$Distance, label = TRUE) # adding spider plot, grouping by distance (inverts$Distance)
 ~~~
 The plot should look something like this:
 <center><img title = "NMDS spider plot" img src="report_figures/base_NMDS_spider_plot.png" alt="Img"></center>
@@ -253,7 +253,88 @@ Phew!! That was a lot of information to take in! We are now going to move on to 
 ***
 Although we ended last section with some pretty neat ordination plots, there is still room for improvement and our plots can be more aesthetics, up to professional standard. This is where the `ggplot2` package comes in handy, the legend of data visualization in R.
 
-In this section, we are going to learn how to plot an NMDS ellipse plot using `ggplot2`. Once again, I have decided to do the ellipse plot as it is my personal favourite, but it is also possible to generate spider and polygon NMDS plots in `ggplot2`
+In this section, we are going to learn how to plot an NMDS ellipse plot using `ggplot2`. Once again, I have decided to do the ellipse plot as it is my personal favourite, but it is also possible to generate spider and polygon NMDS plots in `ggplot2`.
+
+We will start by extracting the NMDS scores from the ordination and create a dataframe with it.
+*Note: if the version of the `vegan` package you have installed is <2.6-2 then the following code should also work: `nmds.scores = as.data.frame(scores(nmds))`*
+~~~r
+# make new dataframe with by extracting NMDS scores
+nmds.scores <- as.data.frame(scores(inv.NMDS)$sites) # for newest version of vegan package
+~~~
+
+We will now add all of the underlying environmental data into this new NMDS dataframe. This will be useful if we want to group communities base on different criteria in future analysis. We will also change our grouping variable of interest (distance) to a factor to make sure code runs smoothly when creating ellipses for communities at different distances.
+~~~r
+nmds.scores <- nmds.scores %>%
+  mutate(Site = as.factor(inverts$Site), Path.Type = as.factor(inverts$Path.Type),
+	Transect = as.factor(inverts$Transect),
+	Distance = as.factor(inverts$Distance))
+
+# check dataframe to ensure all changes have taken place
+head(nmds.scores)
+str(nmds.scores)
+~~~
+
+This newly created data frame is what we will use to plot the NMDS scores and coordinates of each communities.
+
+Now, when it comes to adding the ellipses to this plot, things start to get complicated. We must define a hidden vegan function known as `veganCovEllipse`. This function essentially finds coordinates for drawing a covariance ellipse based on the grouping factor of your choice.
+
+~~~r
+# define hidden vegan function that finds coordinates for drawing a covariance ellipse
+veganCovEllipse<-function (cov, center = c(0, 0), scale = 1, npoints = 100)
+{
+  theta <- (0:npoints) * 2 * pi/npoints
+  Circle <- cbind(cos(theta), sin(theta))
+  t(center + scale * t(Circle %*% chol(cov)))
+}
+~~~
+
+Don't worry too much about the detail of that code, it simply finds the centroids and dispersion of the different ellipses based on a grouping factor of your choice.
+
+We next have to create an empty data frame where we will be adding data containing the ellipse coordinates for plotting. We will fill this data frame by binding the NMDS data we have extracted in the dataframe `"nmds.scores"` with the coordinate data for the ellipses, using distance from paths as a grouping factor.
+
+~~~r
+# create empty dataframe to combine NMDS data with ellipse data
+ellipse_df <- data.frame()
+
+# adding data for ellipse, in this case using distance as a grouping factor
+for(g in levels(nmds.scores$Distance)){
+  ellipse_df <- rbind(ellipse_df, cbind(as.data.frame(with(nmds.scores[nmds.scores$Distance==g,],
+                                                     veganCovEllipse(cov.wt(cbind(NMDS1,NMDS2),
+                                                                            wt=rep(1/length(NMDS1),length(NMDS1)))$cov,
+                                                                     center=c(mean(NMDS1),mean(NMDS2)))))
+                                  ,Distance=g))
+}
+~~~
+
+This is quite a complex line of code, so don't worry too much about understanding the code, but pay more attention to what the code is actually doing.
+
+With both of these data frames (NMDS score data frame and ellipse coordinate data frame) we can now create an NMDS ellipse plot showing differences in community assemblages by using `ggplot2`. Using `ggplot2` will always give you more flexibility with your graphing as well as giving a professional aesthetic to your figures.
+
+I know you're excited now so... LET'S GET OUR PLOT!
+~~~r
+# create ggplot
+(inv_NMDS_plot <- ggplot(data = nmds.scores, aes(NMDS1, NMDS2)) +
+    geom_point(aes(color = Distance, shape = Distance)) + # adding different colours and shapes for points at different distances
+    geom_path(data=ellipse_df, aes(x=NMDS1, y=NMDS2, colour=Distance), linewidth=1) + # adding covariance ellipses according to distance # use size argument if ggplot2 < v. 3.4.0
+    guides(color = guide_legend(override.aes = list(linetype=c(NA,NA,NA,NA)))) + # removes lines from legend
+    theme_bw() + # adding theme
+    theme(panel.grid = element_blank()) + # remove background grid
+    scale_color_manual(name = "Distance (m)", # legend title
+                       labels = c("1","3","7","15"), # adjusting legend labels
+                       values = c("gold", "chartreuse3",
+                                  "deepskyblue2", "salmon")) + # customising colours
+    scale_shape_manual("Distance (m)", # legend title
+                       labels = c("1","3","7","15"), # adjusting legend labels
+                       values = c(17, 15, 3, 7))) # customising shapes
+# save plot
+ggsave(filename = "your_filepath/figure.png, inv_NMDS_plot, device = "png")
+~~~
+
+Notice that a lot of this code is just `ggplot2` aesthetics that I have added to make the figure look nicer. You can customise these as you please! This leaves us with a beautiful plot that should look something like this:
+<center><img title = "NMDS ellipseggplot" img src="report_figures/inv_NMDS_plot.png" alt="Img"></center>
+*Figure 7. NMDS ellipse plot showing invertebrate community order composition at different distances from disturbances (paths). This was generated using `ggplot2`*
+
+Some of the code used to generate NMDS ellipse plots in `ggplot2` was inspired by Didzis Elferts answer on <a href="https://stackoverflow.com/a/13801089" target="_blank"> this Stack Overflow issue</a>.
 
 <a name="stats"></a>
 
