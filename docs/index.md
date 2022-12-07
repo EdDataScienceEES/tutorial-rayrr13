@@ -39,7 +39,10 @@ All files necessary to follow this tutorial can be found in <a href="https://git
 
 Often in community ecology, research is mainly concerned with studying community diversity and its drivers. However, we are not only interested in how single variables affect/describe communities, we are also intrigued by the community composition itself. The assemblage of species/taxonomic units making up a community is of monumental significance as it determines the functional diversity of a community. Functional diversity encompasses all of the organismal traits that rule ecosystem functioning, dynamics, productivity and stability. This in turn will determine the ecosystem services that us as humans can yield from different habitats. Thus, it is important to understand community assemblages and identify their influencing factors. Nevertheless, these differences in community assemblages are hard and tedious to analyse so they tend to be overlooked.
 
+Non-metric Multidimensional Scaling (NMDS) is a great tool for ecologists to answer this sort of questions. It can condense a lot of information about community species composition into something visible and understandable. For instance, consider a dataframe/matrix with relative abundances of different species/other taxonomical units in different communities, where each species/taxonomical unit abundance in the community is an axis and each axis is a dimension (See Figure 1). What NMDS does is summarise all of that information into a 2-dimensional representation, showing the differences in community composition.
 
+<center><img title = "Multidimensional data example" img src="report_figures/multidimensional_data.png" alt="Img"></center>
+*Figure 1. Example of multidmensional data seen through the lens of community ecology, where each species is an axis and each axis is a dimension. Source: https://jonlefcheck.net/2012/10/24/nmds-tutorial-in-r/*
 
 <a name="basicNMDS"></a>
 
