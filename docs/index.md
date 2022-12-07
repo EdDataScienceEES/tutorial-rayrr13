@@ -1,5 +1,5 @@
 ---
-title: NMDS plotting and analysis using the vegan package
+title: NMDS Plotting and Analysis Using the Vegan Package
 subtitle: Analysing differences in ecological community compositions
 date: 2022-12-06 20:00:00
 author: Ray Rubia
