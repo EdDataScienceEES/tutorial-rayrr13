@@ -146,7 +146,7 @@ The stress of an NMDS indicates its goodness of fit. It is essentially the dista
 
 And there you have it! You have now built your first NMDS, well done! We are now going to move on to the fun and interesting part which is plotting our NMDS results! But before, a few warnings to consider when working with an NMDS ordination:
 
-####**<span style="color:red">Warnings:</span>**
+#### **<span style="color:red">Warnings:</span>**
 - Beware of NMDS interpretation if you have high stress values
 - After running an NMDS, the generated distance matrix is no longer raw dat as pairwise distances have been calculated from that data, making the distance data interdependent
 - Do not relate environmental variables to an NMDS ordination as it is only an approximate representation of the distance matrix. It is more relevant to relate variables to the distance matrix itself
