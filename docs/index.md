@@ -21,6 +21,8 @@ This tutorial will introduce the basics of NMDS ordinations. It will also teach 
 
 All files necessary to follow this tutorial can be found in <a href="https://github.com/EdDataScienceEES/tutorial-rayrr13" target="_blank"> this GitHub repository</a>. Download the repository as a ZIP file (clicking `Code/Download ZIP`) and unzip it in your local machine, or clone the repository to your own GitHub account.
 
+***
+
 ### Tutorial Aims
 
 #### <a href="#intro"> 1. Learn what Non-metric Multidimensional Scaling (NMDS) is</a>
