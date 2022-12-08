@@ -487,7 +487,7 @@ For more on the `vegan` package and its amazingly versatile functionality, check
 
 ***
 
-##Acknowledgements:
+## Acknowledgements:
 
 Some of the code used in this tutorial was inspired by Dr. Stace Fairhurst from the University of Edinburgh.
 
