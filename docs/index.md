@@ -173,15 +173,15 @@ This should generate the following plot:
 <center><img title = "Basic NMDS plot" img src="report_figures/NMDS_most_basic_plot.png" alt="Img"></center>
 *Figure 2. Basic representation of an NMDS, where circles show different communities and crosses show different invertebrate orders. NMDS stress = 0.114, n = 60*
 
-As you can see, this plot doesn't give away much information. Each dot represents a different community and each cross represents a different invertebrate order. The closer 2 points are, the more similar those communities are in terms of composition. However, here it is hard to identify the position of different communities or species because there are no labels or no other indicators. Let's add these! We will use the `ordiplot` and `orditorp` plotting functions embedded in the `vegan` package.
+As you can see, this plot doesn't give away much information. Each dot represents a different community and each cross represents a different invertebrate order. The closer 2 points are, the more similar those communities are in terms of composition. However, here it is hard to identify the position of different communities or species (orders in this case) because there are no labels or no other indicators. Let's add these! We will use the `ordiplot` and `orditorp` plotting functions embedded in the `vegan` package.
 
 ~~~r
 ordiplot(inv.NMDS, type = "n") # create blank ordination plot
-orditorp(inv.NMDS, display = "species", col="red", air = 0.1) # add order names in red
+orditorp(inv.NMDS, display = "species", col="red", air = 0.1) # add species (orders in this case) names in red
 orditorp(inv.NMDS, display = "sites", cex = 1.25, air = 0.1) # add site numbers in black
 ~~~
 <center><img title = "Messy basic NMDS plot" img src="report_figures/base_NMDSplot_messy.png" alt="Img"></center>
-*Figure 3. NMDS representation with numbers representing the different sites and labels indicating the different species. NMDS stress = 0.114, n = 60*
+*Figure 3. NMDS representation with numbers representing the different sites and labels indicating the different species (orders in this case). NMDS stress = 0.114, n = 60*
 
 We can now see what dot corresponds to each community and what cross
 corresponds to each invertebrate order. The `air = ...` argument is simply just to add empty space around text labels. Nevertheless, the plot still looks a bit confusing and messy. It isn't telling us anything about the relationship between different environmental variables and community composition. It is simply telling us what communities are more similar to one another without giving any background environmental information for these communities.
