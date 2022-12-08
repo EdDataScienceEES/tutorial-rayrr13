@@ -6,6 +6,7 @@ This folder contains all figures and tables generated from this tutorial:
 - **base_NMDSplot.png** is a neat NMDS ellipse plot generated using Base R
 - **base_NMDSplot_messy.png** is a messy NMDS plot generated using Base R that can be improved
 - **inv_NMDS_plot.png** is a neat NMDS ellipse plot generated using `ggplot2` 
+- **invertebrate.png** is a picture of an invertebrate in a grassland for the report
 - **multidimensional_data.png** is an graphic example of multidimensional data seen through the lens of community ecology
 - **NMDS_most_basic_plot.png** is a very basic NMDS plot generated using Base R
 - **permanova_assumptions.png** is a visual check of the PERMANOVA model assumption of multivariate homogeneity of variances

@@ -86,6 +86,8 @@ library(tidyverse) # for efficient data manipulation and visualization, contains
 
 Today, we will be trying to find empirical evidence supporting the intermediate disturbance hypothesis (IDH) by using an NMDS analysis.
 
+<center><img title = "Invertebrate in grassland" img src="report_figures/invertebrate.png" alt="Img"></center>
+
 Some brief background about today's research topic: The Intermediate Disturbance Hypothesis (IDH) essentially states that diversity is maximised at intermediate levels of disturbance. At high levels of disturbance, good dispersers dominate the communities, not giving strong competitors a chance to settle. Conversely, at low rates of disturbance, stronger competitors dominate and competitively exclude weaker competitors (tend to be the good dispersers) and dominate the community. Thus, at different levels of disturbance, community assemblages should be different as at high levels we have rapid colonising species and at low levels we have competitively dominant species.
 
 Now we can import our dataset. This data set was collected near Oban, Scotland during an undergraduate ecology field course by University of Edinburgh undergraduate students. It was collected to test the accuracy of the classic IDH theory in predicting how the frequency and intensity of disturbances affects diversity. The data can be found in the repository under `data/invert_data.csv` and can be imported as follows:
@@ -480,6 +482,25 @@ Anyways, that is all from me. I hope you have enjoyed this tutorial as much as I
 #### - HOW INVERTEBRATE COMMUNITY ASSEMBLAGES VARY (OR NOT) AT DIFFERENT DISTANCES FROM PATHS IN OBAN, SCOTLAND!!!
 
 For more on the `vegan` package and its amazingly versatile functionality, check out the official <a href="https://www.mooreecology.com/uploads/2/4/2/1/24213970/vegantutor.pdf" target="_blank">vegan tutor</a>.
+
+***
+
+##Acknowledgements:
+
+Some of the code used in this tutorial was inspired by Dr. Stace Fairhurst from the University of Edinburgh.
+
+***
+
+## Sources of information on which this tutorial builds on:
+- https://jonlefcheck.net/2012/10/24/nmds-tutorial-in-r/ – For NMDS basics
+- https://sites.google.com/site/mb3gustame/dissimilarity-based-methods/nmds – For NMDS theory
+- https://archetypalecology.wordpress.com/2018/02/18/non-metric-multidimensional-scaling-nmds-what-how/ – For more info on NMDS
+- https://sites.google.com/site/mb3gustame/reference/dissimilarity – For theory on dissimilarities and distances
+- https://jkzorz.github.io/2019/06/06/NMDS.html – For NMDS plots in R
+- https://stackoverflow.com/a/13801089 – For creating vegan ellipse plots in R
+- https://archetypalecology.wordpress.com/2018/02/21/permutational-multivariate-analysis-of-variance-permanova-in-r-preliminary/ – For PERMANOVA analysis in R
+- https://rdrr.io/rforge/vegan/man/simper.html – For SIMPER analysis in R
+- https://rstudio-pubs-static.s3.amazonaws.com/343284_cbadd2f3b7cd42f3aced2d3f42dc6d33.html – For more on SIMPER analysis in R
 
 <hr>
 <hr>
