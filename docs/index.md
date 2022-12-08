@@ -251,7 +251,7 @@ Phew!! That was a lot of information to take in! We are now going to move on to 
 
 ## 4. Generate advanced NMDS plots
 ***
-Although we ended last section with some pretty neat ordination plots, but there is still room for improvement and our plots can be more aesthetics, up to professional standard. This is where the `ggplot2` package comes in handy, the legend of data visualization in R.
+Although we ended last section with some pretty neat ordination plots, but there is still room for improvement and our plots can be more aesthetic, up to professional standard. This is where the `ggplot2` package comes in handy, the legend of data visualization in R.
 
 In this section, we are going to learn how to plot an NMDS ellipse plot using `ggplot2`. Once again, I have decided to do the ellipse plot as it is my personal favourite, but it is also possible to generate spider and polygon NMDS plots in `ggplot2`.
 
@@ -262,7 +262,7 @@ We will start by extracting the NMDS scores from the ordination and create a dat
 nmds.scores <- as.data.frame(scores(inv.NMDS)$sites) # for newest version of vegan package
 ~~~
 
-We will now add all of the underlying environmental data into this new NMDS dataframe. This will be useful if we want to group communities base on different criteria in future analysis. We will also change our grouping variable of interest (distance) to a factor to make sure code runs smoothly when creating ellipses for communities at different distances.
+We will now add all of the underlying environmental data into this new NMDS dataframe. This will be useful if we want to group communities base on different criteria in future analyses. We will also change our grouping variable of interest (distance) to a factor to make sure code runs smoothly when creating ellipses for communities at different distances.
 ~~~r
 nmds.scores <- nmds.scores %>%
   mutate(Site = as.factor(inverts$Site), Path.Type = as.factor(inverts$Path.Type),
@@ -308,7 +308,7 @@ for(g in levels(nmds.scores$Distance)){
 
 This is quite a complex line of code, so don't worry too much about understanding the code, but pay more attention to what the code is actually doing.
 
-With both of these data frames (NMDS score data frame and ellipse coordinate data frame) we can now create an NMDS ellipse plot showing differences in community assemblages by using `ggplot2`. The NMDS scores will be our x and y variables, distance from paths will be our grouping variable to add different colours/point shapes and the ellipse dataframe coordinates is what we will use to plot our ellipses). Using `ggplot2` will always give you more flexibility with your graphing as well as giving a professional aesthetic to your figures.
+With both of these data frames (NMDS score data frame and ellipse coordinate data frame) we can now create an NMDS ellipse plot showing differences in community assemblages by using `ggplot2`. The NMDS scores will be our x and y variables, distance from paths will be our grouping variable to add different colours/point shapes and the ellipse dataframe coordinates is what we will use to plot our ellipses. Using `ggplot2` will always give you more flexibility with your graphing as well as giving a professional aesthetic to your figures.
 
 I know you're excited now so... LET'S GET OUR PLOT!
 ~~~r
@@ -342,7 +342,7 @@ Some of the code used to generate NMDS ellipse plots in `ggplot2` was inspired b
 ***
 So far we have been generating some stunning NMDS ordination plots and seen the invertebrate order composition at different distances from disturbances. However, we have not been interpreting the results and trying to answer our research questions: Does the invertebrate order composition differ at varying distances from disturbances?
 
-We could assess this visually by looking at Figures 4 and 7. The more 2 ellipses overlap, the more similar the invertebrate order composition between the communities at those distances. Thus, we are looking to see if we see any distinct ellipses with very little overlap that would provide us with empirical evidence supporting the IDH (community composition will differ at varying distances from disturbances due to the dispersor vs competitor trade-off). The visual assessment of Figures 4 and 7 seems to show a lot of overlap between the communities at different distances, indicating tha they have quite a similar invertebrate order composition. Nevertheless, visual assessment of an ordination plot is not a thorough enough method that allows to truly detect if there is a significant difference or not. For this, we must call upon our trusted friend– stats!
+We could assess this visually by looking at Figures 4 and 7. The more 2 ellipses overlap, the more similar the invertebrate order composition between the communities at those distances. Thus, we are looking to see if we see any distinct ellipses with very little overlap that would provide us with empirical evidence supporting the IDH (community composition will differ at varying distances from disturbances due to the disperser vs competitor trade-off). The visual assessment of Figures 4 and 7 seems to show a lot of overlap between the communities at different distances, indicating that they have quite a similar invertebrate order composition. Nevertheless, visual assessment of an ordination plot is not a thorough enough method that allows to truly detect if there is a significant difference or not. For this, we must call upon our trusted friend– stats!
 
 There are many ways we could conduct a statistical analysis to assess if distance from disturbance affects invertebrate community order composition. I am going to outline the procedure to carry out a PERmutational Multivariate ANalysis Of VAriance (PERMANOVA), the most commonly used science distance-based method to test the association of community composition with covariates of interest (distance in this case). Other valid alternatives are ANOSIM test, Mantel test or a distance-based redundancy analysis.
 
@@ -370,13 +370,14 @@ inv_permanova <- adonis2(as.matrix(inverts [,6:20]) ~ Distance, inverts,
 As you can see, the `adonis2()` function takes the columns containing order abundance information from the invertebrate dataset, treating them as a matrix, and it generates the distance matrix from them on which it runs the PERMANOVA. Neat, huh? Here, we must indicate "Distance" as our predictor variable and indicate the total number of permutations we want the test to run. Finally, we need to indicate the method to calculate the distance matrix with. In this case, we'll indicate Bray-Curtis, as it is the way we previously calculated the pairwise distances.
 
 Now, let's see what kind of outputs this model generates (can view in R by simply calling the object you saved the model as).
+
 *Note: As it is a permutational test, the output will slightly vary every time you run the model.*
 <center><img title = "PERMANOVA outputs" img src="report_figures/permanova_outputs.png" alt="Img"></center>
 *Figure 8. PERMANOVA summary outputs*
 
 As previously discussed, we can see this model generates a pseudo F-ratio (column labelled F in Figure 8). It also generates an associated p-value, indicating the significance of the effect of our predictor variable. However, significance isn't assessed in the same conventional way we generate p-values in an ANOVA. In a PERMANOVA, significance is assessed via permutations.  
 
-The p-value indicates the proportion of permuted pseudo F-ratios which are greater or equal to the observed statistic (before any permutation). In other words, do permuted datasets yield a better resolution (community composition separation) of groups relative to the actual dataset. If the actual dataset has more separation than most permuted datasets then we have a significant effect. The signficance threshold of p < 0.05 still stands for PERMANOVAS.
+The p-value indicates the proportion of permuted pseudo F-ratios which are greater or equal to the observed statistic (before any permutation). In other words, do permuted datasets yield a better resolution (community composition separation) of groups relative to the actual dataset. If the actual dataset has more separation than most permuted datasets then we have a significant effect. The signficance threshold of p < 0.05 still stands for PERMANOVA.
 
 Like every other statistical model, a PERMANOVA also has its own set of assumptions that must be met:
 - Objects in the dataset are exchangeable under the null hypothesis
@@ -398,7 +399,7 @@ inv.dispersion <- betadisper(inv.dist, group=inverts$Distance)
 permutest(inv.dispersion)
 ~~~
 
-As we can see from the outputs of the `permutest()` function, the test has given a non-significant result (p > 0.05), meaning that we have homogeneous variances and our model meets the assumptions and its results can be trusted.
+As we can see from the outputs of the `permutest()` function, the test has given a non-significant result (p > 0.05), meaning that we have homogeneous variances and our model meets the assumptions. Therefore, model results can be trusted.
 
 We can also visually assess this:
 ~~~r
@@ -422,9 +423,10 @@ Although we trusted our model, some precautions must be considered when running 
 
 ***
 ### Simper analysis
-If you want a deeper look into your community composition analysis you can run further tests and analyses. For instance, you can run a SIMPER analysis (SIMilarity PERcentages analysis) to determine the taxonomic untis that most contribute to the differences in community composition. The way it works is by breaking down the Bray-Curtis distance calculation and it generates the average contribution of each individual taxonomic unit in each pairwise comparison of all pf the groupings. However, its results should be interpreted with caution as it points out the most variable taxonomic units rather than the most distinctive ones.
+If you want a deeper look into your community composition analysis you can run further tests and analyses e.g. SIMPER analysis, indicator species analysis, among others. A SIMPER analysis (SIMilarity PERcentages analysis) determines the taxonomic untis that most contribute to the differences in community composition. The way it works is by breaking down the Bray-Curtis distance calculation and it generates the average contribution of each individual taxonomic unit in each pairwise comparison of all pf the groupings. However, its results should be interpreted with caution as it points out the most variable taxonomic units rather than the most distinctive ones.
 
 This is not very relevant in our case as we have quite similar invertebrate community compositions, but I will run it as an example anyways. Once again, it can be done with functions embeded within the `vegan` package.
+
 *Note: as it runs pairwise comparisons it only works for categorical variables, so it will treat any continuous variables as a factor*
 ~~~r
 # simper analysis
@@ -468,7 +470,7 @@ Nevertheless, our intensive research, analysis and testing of invertebrate commu
 
 Anyways, that is all from me. I hope you have enjoyed this tutorial as much as I have enjoyed creating it. Here are some learning objectives for you to go over and check you have grasped the key concepts and the essence of this tutorial. In this tutorial we learned:
 
-#### - What an NMDS is?
+#### - What is an NMDS?
 #### - Why should we care about NMDS and how is it useful?
 #### - How to build a simple NMDS in R using the `vegan` package
 #### - How to make simple NMDS ordination plots using the `vegan` package and Base R
@@ -477,9 +479,7 @@ Anyways, that is all from me. I hope you have enjoyed this tutorial as much as I
 #### - How to take our analysis a step further by carrying out a SIMPER analysis
 #### - HOW INVERTEBRATE COMMUNITY ASSEMBLAGES VARY (OR NOT) AT DIFFERENT DISTANCES FROM PATHS IN OBAN, SCOTLAND!!!
 
-We can also provide some useful links, include a contact form and a way to send feedback.
-
-For more on `vegan` and its amazingly versatile functionality, check out the official <a href="https://www.mooreecology.com/uploads/2/4/2/1/24213970/vegantutor.pdf" target="_blank">vegan tutor</a>.
+For more on the `vegan` package and its amazingly versatile functionality, check out the official <a href="https://www.mooreecology.com/uploads/2/4/2/1/24213970/vegantutor.pdf" target="_blank">vegan tutor</a>.
 
 <hr>
 <hr>
