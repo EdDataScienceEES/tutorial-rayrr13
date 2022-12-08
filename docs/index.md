@@ -457,6 +457,7 @@ summary(inv_simper)
 ~~~
 <center><img title = "SIMPER summary output" img src="report_figures/simper_output.png" alt="Img"></center>
 *Figure 11. SIMPER summary output. In this case it only shows taxonomical responsible for assemblage differences in communities at 1 m vs 3 m, but your R console should show all of the pairwise comparisons.*
+
 ***
 ***
 
