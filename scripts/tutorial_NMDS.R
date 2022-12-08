@@ -146,7 +146,7 @@ inv_permanova <- adonis2(as.matrix(inverts [,6:20]) ~ Distance, inverts,
                              permutations = 999, method = "bray")
 # permutations is the number of possible arrangements the data could take
 # using permutations = 999 is standard practice in science and across the literature
-# can increase it if you want to get a ore thorough analysis
+# can increase it if you want to get a more thorough analysis
 # use method = bray as it is what we previously used to calculate pairwise distances
 
 # look at model output
@@ -163,7 +163,7 @@ inv.dispersion <- betadisper(inv.dist, group=inverts$Distance)
 permutest(inv.dispersion)
 
 # can also visually assess the assumptions
-plot(inv.dispersion, hull = FALSE, ellipse=TRUE)
+plot(inv.dispersion, hull = FALSE, ellipse=TRUE) # remove hulls and add ellipses
 
 # OUR MODEL FITS THE ASSUMPTIONS
 
