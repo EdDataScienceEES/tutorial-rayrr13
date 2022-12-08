@@ -468,14 +468,14 @@ Nevertheless, our intensive research, analysis and testing of invertebrate commu
 
 Anyways, that is all from me. I hope you have enjoyed this tutorial as much as I have enjoyed creating it. Here are some learning objectives for you to go over and check you have grasped the key concepts and the essence of this tutorial. In this tutorial we learned:
 
-##### - What an NMDS is?
-##### - Why should we care about NMDS and how is it useful?
-##### - How to build a simple NMDS in R using the `vegan` package
-##### - How to make simple NMDS ordination plots using the `vegan` package and Base R
-##### - How to make more advanced NMDS ordination plots with the help of `ggplot2`
-##### - How to statistically analyse the results of an NMDS using a PERMANOVA test
-##### - How to take our analysis a step further by carrying out a SIMPER analysis
-##### - HOW INVERTEBRATE COMMUNITY ASSEMBLAGES VARY (OR NOT) AT DIFFERENT DISTANCES FROM PATHS IN OBAN, SCOTLAND!!!
+#### - What an NMDS is?
+#### - Why should we care about NMDS and how is it useful?
+#### - How to build a simple NMDS in R using the `vegan` package
+#### - How to make simple NMDS ordination plots using the `vegan` package and Base R
+#### - How to make more advanced NMDS ordination plots with the help of `ggplot2`
+#### - How to statistically analyse the results of an NMDS using a PERMANOVA test
+#### - How to take our analysis a step further by carrying out a SIMPER analysis
+#### - HOW INVERTEBRATE COMMUNITY ASSEMBLAGES VARY (OR NOT) AT DIFFERENT DISTANCES FROM PATHS IN OBAN, SCOTLAND!!!
 
 We can also provide some useful links, include a contact form and a way to send feedback.
 
