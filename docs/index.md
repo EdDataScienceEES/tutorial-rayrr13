@@ -251,7 +251,7 @@ Phew!! That was a lot of information to take in! We are now going to move on to 
 
 ## 4. Generate advanced NMDS plots
 ***
-Although we ended last section with some pretty neat ordination plots, there is still room for improvement and our plots can be more aesthetics, up to professional standard. This is where the `ggplot2` package comes in handy, the legend of data visualization in R.
+Although we ended last section with some pretty neat ordination plots, but there is still room for improvement and our plots can be more aesthetics, up to professional standard. This is where the `ggplot2` package comes in handy, the legend of data visualization in R.
 
 In this section, we are going to learn how to plot an NMDS ellipse plot using `ggplot2`. Once again, I have decided to do the ellipse plot as it is my personal favourite, but it is also possible to generate spider and polygon NMDS plots in `ggplot2`.
 
